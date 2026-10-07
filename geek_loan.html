@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geek Loan | Digital Lending Platform</title>
+<meta name="description" content="Geek Loan digital loan management portal">
+<style>
+:root{--primary:#2563eb;--primary2:#4f46e5;--dark:#0f172a;--muted:#64748b;--bg:#f1f5f9;--card:#fff;--line:#e2e8f0;--success:#16a34a;--danger:#dc2626;--warning:#d97706}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--dark)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.topbar{height:70px;background:linear-gradient(135deg,#0f172a,#172554);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:900;letter-spacing:-.5px}.logo span{color:#60a5fa}.contact{font-size:13px;color:#cbd5e1}
+.hero{padding:70px 5% 60px;background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#312e81 100%);color:#fff}.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.badge{display:inline-block;background:#ffffff18;border:1px solid #ffffff2b;border-radius:99px;padding:7px 12px;font-size:12px;margin-bottom:15px}.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.02;margin:0 0 18px}.hero p{font-size:18px;color:#dbeafe;max-width:650px;line-height:1.7}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{border:0;border-radius:12px;padding:12px 17px;font-weight:750}.btn-primary{background:#3b82f6;color:#fff}.btn-light{background:#fff;color:#172554}.btn-outline{background:transparent;color:inherit;border:1px solid #ffffff44}
+.hero-card{background:#ffffff12;border:1px solid #ffffff24;padding:25px;border-radius:22px;backdrop-filter:blur(12px)}.hero-card h3{margin-top:0}.mini{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #ffffff18;font-size:14px}.mini:last-child{border:0}
+.section{max-width:1100px;margin:0 auto;padding:55px 5%}.section h2{text-align:center;font-size:32px;margin:0 0 10px}.section>p{text-align:center;color:var(--muted);margin-bottom:30px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 30px #0f172a08}.feature .icon{font-size:28px}.feature h3{margin:12px 0 7px}.feature p{color:var(--muted);line-height:1.6;font-size:14px}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px;background:linear-gradient(135deg,#0f172a,#1d4ed8)}.auth{width:min(460px,100%);background:#fff;border-radius:22px;padding:30px;box-shadow:0 25px 70px #0005}.auth h2{margin:0 0 7px}.muted{color:var(--muted);font-size:14px}.tabs{display:flex;background:#f1f5f9;border-radius:12px;padding:4px;margin:20px 0}.tabs button{flex:1;border:0;background:transparent;padding:10px;border-radius:9px}.tabs button.active{background:#fff;box-shadow:0 2px 8px #0001;font-weight:700}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 7px}input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:10px;outline:none;background:#fff}input:focus,select:focus,textarea:focus{border-color:#60a5fa;box-shadow:0 0 0 3px #3b82f61a}
+.full{width:100%;margin-top:18px}.linkbtn{background:none;border:0;color:var(--primary);padding:0;font-weight:700}
+.dashboard{min-height:100vh}.dashbar{background:#0f172a;color:#fff;padding:14px 4%;display:flex;justify-content:space-between;align-items:center;gap:15px}.dashbar .btn{padding:9px 13px}.dashbody{max-width:1200px;margin:auto;padding:25px 4%}.welcome{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.welcome h1{margin:0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat strong{font-size:25px;display:block;margin-top:7px}.stat small{color:var(--muted)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.card h3{margin-top:0}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:14px}.table th,.table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}.status{display:inline-block;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:800}.approved{background:#dcfce7;color:#166534}.pending{background:#fef3c7;color:#92400e}.rejected{background:#fee2e2;color:#991b1b}.notice{padding:12px;border-radius:10px;background:#eff6ff;color:#1e40af;font-size:13px;margin-top:12px}
+.admin-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.danger{color:var(--danger)}.footer{padding:30px 5%;text-align:center;color:var(--muted);font-size:13px}
+.modal{position:fixed;inset:0;background:#02061799;display:flex;align-items:center;justify-content:center;padding:20px;z-index:30}.modal-box{background:#fff;border-radius:20px;padding:25px;width:min(520px,100%);max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f1f5f9;border-radius:9px;padding:8px}
+.toast{position:fixed;right:20px;bottom:20px;background:#0f172a;color:#fff;padding:13px 17px;border-radius:12px;z-index:50;box-shadow:0 10px 30px #0003}
+@media(max-width:800px){.hero-inner,.grid2{grid-template-columns:1fr}.features{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.admin-grid{grid-template-columns:repeat(2,1fr)}.contact{display:none}.hero{padding-top:45px}}
+@media(max-width:480px){.grid4,.admin-grid{grid-template-columns:1fr}.welcome{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div id="landing">
+<header class="topbar"><div class="logo">Geek<span>Loan</span> ⚡</div><div class="contact">Support: 0115 572 336</div><button class="btn btn-primary" onclick="showAuth()">Login / Register</button></header>
+<section class="hero"><div class="hero-inner">
+<div><span class="badge">SMART • SIMPLE • DIGITAL</span><h1>Loans made<br><span style="color:#60a5fa">simple.</span></h1><p>Geek Loan is a modern loan-management platform prototype for applications, approvals, repayment tracking and customer accounts.</p><div class="actions"><button class="btn btn-light" onclick="showAuth('register')">Create account</button><button class="btn btn-outline" onclick="showAuth('login')">Member login</button></div></div>
+<div class="hero-card"><h3>How it works</h3><div class="mini"><span>01 · Register</span><b>ID + password</b></div><div class="mini"><span>02 · Apply</span><b>Choose amount</b></div><div class="mini"><span>03 · Review</span><b>Admin decision</b></div><div class="mini"><span>04 · Repay</span><b>Track balance</b></div></div>
+</div></section>
+<section class="section"><h2>Everything in one place</h2><p>A clean portal designed for borrowers and administrators.</p><div class="features">
+<div class="feature"><div class="icon">🔐</div><h3>Secure accounts</h3><p>Users create their own password and sign in using their national ID number.</p></div>
+<div class="feature"><div class="icon">💳</div><h3>Loan applications</h3><p>Apply for a loan, select a term, see estimated repayment and follow application status.</p></div>
+<div class="feature"><div class="icon">📊</div><h3>Admin control</h3><p>Review applications, approve or reject requests, monitor borrowers and repayment records.</p></div>
+<div class="feature"><div class="icon">🔔</div><h3>Notifications</h3><p>Receive application and repayment updates directly inside the portal.</p></div>
+<div class="feature"><div class="icon">🧮</div><h3>Repayment calculator</h3><p>Estimate monthly installments before submitting an application.</p></div>
+<div class="feature"><div class="icon">📱</div><h3>Mobile friendly</h3><p>Responsive design that works across phones, tablets and desktop screens.</p></div>
+</div></section>
+<footer class="footer">© 2026 Geek Loan · Support 0115 572 336 · Prototype only — connect a secure backend before handling real financial data.</footer>
+</div>
+
+<div id="auth" class="hidden">
+<div class="auth-wrap"><div class="auth"><div class="logo" style="color:#0f172a">Geek<span>Loan</span> ⚡</div>
+<div class="tabs"><button id="tabLogin" class="active" onclick="switchAuth('login')">Login</button><button id="tabRegister" onclick="switchAuth('register')">Create account</button></div>
+<div id="loginForm"><h2>Welcome back</h2><p class="muted">Use your ID number and password.</p>
+<label>Portal</label><select id="loginPortal"><option value="user">Regular borrower</option><option value="admin">Administrator</option></select>
+<label>ID number / Admin username</label><input id="loginId" placeholder="e.g. 12345678">
+<label>Password</label><input id="loginPass" type="password" placeholder="Your password">
+<button class="btn btn-primary full" onclick="login()">Sign in</button>
+<p class="muted" style="margin-top:15px">Demo admin: <b>admin</b> / <b>GeekAdmin@2026</b></p>
+<button class="linkbtn" onclick="goHome()">← Back to home</button></div>
+<div id="registerForm" class="hidden"><h2>Create your account</h2><p class="muted">Create your own borrower login credentials.</p>
+<label>Full name</label><input id="regName" placeholder="Your full name">
+<label>ID number</label><input id="regId" placeholder="National ID number">
+<label>Phone number</label><input id="regPhone" placeholder="07XXXXXXXX">
+<label>Create password</label><input id="regPass" type="password" placeholder="At least 8 characters">
+<label>Confirm password</label><input id="regPass2" type="password" placeholder="Repeat password">
+<button class="btn btn-primary full" onclick="register()">Create account</button>
+<button class="linkbtn" style="margin-top:15px" onclick="switchAuth('login')">Already registered? Login</button></div>
+</div></div>
+</div>
+
+<div id="userDash" class="dashboard hidden"></div>
+<div id="adminDash" class="dashboard hidden"></div>
+<div id="modal" class="modal hidden"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const KEY='geekloan_demo_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{
+ users:[], loans:[], payments:[], notices:[], session:null
+};
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function money(n){return 'KES '+Number(n||0).toLocaleString('en-KE',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.remove('hidden');setTimeout(()=>e.classList.add('hidden'),2800)}
+function hideAll(){['landing','auth','userDash','adminDash'].forEach(x=>document.getElementById(x).classList.add('hidden'))}
+function showAuth(mode='login'){hideAll();document.getElementById('auth').classList.remove('hidden');switchAuth(mode)}
+function goHome(){hideAll();document.getElementById('landing').classList.remove('hidden')}
+function switchAuth(mode){document.getElementById('loginForm').classList.toggle('hidden',mode!=='login');document.getElementById('registerForm').classList.toggle('hidden',mode!=='register');document.getElementById('tabLogin').classList.toggle('active',mode==='login');document.getElementById('tabRegister').classList.toggle('active',mode==='register')}
+function register(){
+ const name=document.getElementById('regName').value.trim(), id=document.getElementById('regId').value.trim(), phone=document.getElementById('regPhone').value.trim(), p=document.getElementById('regPass').value, p2=document.getElementById('regPass2').value;
+ if(!name||!id||!phone||!p)return toast('Please complete all fields.');
+ if(p.length<8)return toast('Password must be at least 8 characters.');
+ if(p!==p2)return toast('Passwords do not match.');
+ if(state.users.some(u=>u.id===id))return toast('An account with that ID already exists.');
+ state.users.push({id,name,phone,password:p,created:new Date().toISOString()});save();toast('Account created successfully.');switchAuth('login');document.getElementById('loginId').value=id
+}
+function login(){
+ const portal=document.getElementById('loginPortal').value,id=document.getElementById('loginId').value.trim(),p=document.getElementById('loginPass').value;
+ if(portal==='admin'){if(id==='admin'&&p==='GeekAdmin@2026'){state.session={type:'admin',id:'admin'};save();renderAdmin()}else toast('Invalid administrator credentials.');return}
+ const u=state.users.find(x=>x.id===id&&x.password===p);if(!u)return toast('Invalid ID number or password.');
+ state.session={type:'user',id};save();renderUser()
+}
+function logout(){state.session=null;save();goHome()}
+function user(){return state.users.find(u=>u.id===state.session?.id)}
+function calc(amount,rate,months){let r=rate/100/12;return r?amount*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1):amount/months}
+function renderUser(){
+ hideAll();document.getElementById('userDash').classList.remove('hidden');const u=user(), loans=state.loans.filter(l=>l.userId===u.id), active=loans.find(l=>l.status==='Approved'), totalPaid=state.payments.filter(p=>p.userId===u.id).reduce((a,p)=>a+p.amount,0);
+ document.getElementById('userDash').innerHTML=`<header class="dashbar"><div class="logo">Geek<span>Loan</span> ⚡</div><div>Hi, ${esc(u.name.split(' ')[0])} <button class="btn btn-outline" onclick="logout()">Logout</button></div></header>
+ <main class="dashbody"><div class="welcome"><div><h1>Borrower Portal</h1><div class="muted">ID: ${esc(u.id)} · ${esc(u.phone)}</div></div><button class="btn btn-primary" onclick="openApply()">+ Apply for loan</button></div>
+ <div class="grid4"><div class="card stat"><small>Active balance</small><strong>${money(active?active.balance:0)}</strong></div><div class="card stat"><small>Total paid</small><strong>${money(totalPaid)}</strong></div><div class="card stat"><small>Applications</small><strong>${loans.length}</strong></div><div class="card stat"><small>Account</small><strong style="font-size:17px">Verified</strong></div></div>
+ <div class="grid2"><div class="card"><h3>My loans</h3>${loanTable(loans,u.id)}</div><div class="card"><h3>Quick repayment estimate</h3><label>Amount (KES)</label><input id="qa" type="number" value="10000" oninput="estimate()"><label>Term</label><select id="qm" onchange="estimate()"><option>3</option><option>6</option><option>12</option><option>18</option><option>24</option></select><div class="notice" id="est">Estimated monthly: ${money(calc(10000,8,3))}</div><p class="muted">Illustrative calculator only. Final terms are determined by the lender.</p></div></div>
+ <div class="card" style="margin-top:18px"><h3>Notifications</h3>${state.notices.filter(n=>n.userId===u.id).slice(-5).reverse().map(n=>`<div class="notice">${esc(n.text)} <small> · ${new Date(n.date).toLocaleDateString()}</small></div>`).join('')||'<p class="muted">No notifications yet.</p>'}</div></main>`
+}
+function estimate(){const a=+document.getElementById('qa').value||0,m=+document.getElementById('qm').value||3;document.getElementById('est').textContent='Estimated monthly: '+money(calc(a,8,m))}
+function loanTable(loans,uid){if(!loans.length)return '<p class="muted">No loan applications yet.</p>';return `<div class="table-wrap"><table class="table"><tr><th>Reference</th><th>Amount</th><th>Term</th><th>Status</th><th>Balance</th><th></th></tr>${loans.map(l=>`<tr><td>${l.ref}</td><td>${money(l.amount)}</td><td>${l.months} mo</td><td><span class="status ${l.status.toLowerCase()}">${l.status}</span></td><td>${money(l.balance)}</td><td>${l.status==='Approved'?`<button class="btn btn-primary" onclick="payLoan('${l.ref}')">Pay</button>`:''}</td></tr>`).join('')}</table></div>`}
+function openApply(){
+ document.getElementById('modal').classList.remove('hidden');document.getElementById('modal').innerHTML=`<div class="modal-box"><div class="modal-head"><h2>Apply for a loan</h2><button class="close" onclick="closeModal()">✕</button></div><label>Loan amount (KES)</label><input id="la" type="number" min="500" max="500000" value="10000"><label>Repayment term</label><select id="lm"><option value="3">3 months</option><option value="6">6 months</option><option value="12">12 months</option><option value="18">18 months</option><option value="24">24 months</option></select><label>Purpose</label><textarea id="lp" rows="3" placeholder="What will the loan be used for?"></textarea><div class="notice">Estimated rate: 8% p.a. for demonstration. Actual rates and eligibility should be configured by the lender.</div><button class="btn btn-primary full" onclick="applyLoan()">Submit application</button></div>`
+}
+function closeModal(){document.getElementById('modal').classList.add('hidden')}
+function applyLoan(){const amount=+document.getElementById('la').value,months=+document.getElementById('lm').value,purpose=document.getElementById('lp').value.trim();if(amount<500||amount>500000)return toast('Enter an amount between KES 500 and 500,000.');const ref='GL-'+Date.now().toString().slice(-7);state.loans.push({ref,userId:user().id,amount,months,purpose,status:'Pending',balance:amount,rate:8,created:new Date().toISOString()});state.notices.push({userId:user().id,text:`Application ${ref} has been submitted for review.`,date:new Date().toISOString()});save();closeModal();toast('Application submitted.');renderUser()}
+function payLoan(ref){const l=state.loans.find(x=>x.ref===ref);document.getElementById('modal').classList.remove('hidden');document.getElementById('modal').innerHTML=`<div class="modal-box"><div class="modal-head"><h2>Record repayment</h2><button class="close" onclick="closeModal()">✕</button></div><p>Outstanding balance: <b>${money(l.balance)}</b></p><label>Amount (KES)</label><input id="pa" type="number" min="1" max="${l.balance}" value="${Math.min(1000,l.balance)}"><button class="btn btn-primary full" onclick="makePayment('${ref}')">Confirm payment</button><p class="muted">Demo only: no real payment is processed.</p></div>`}
+function makePayment(ref){const l=state.loans.find(x=>x.ref===ref),a=+document.getElementById('pa').value;if(!a||a>l.balance)return toast('Enter a valid amount.');l.balance=Math.max(0,l.balance-a);if(l.balance===0)l.status='Paid';state.payments.push({ref,userId:user().id,amount:a,date:new Date().toISOString()});state.notices.push({userId:user().id,text:`Repayment of ${money(a)} recorded for ${ref}.`,date:new Date().toISOString()});save();closeModal();toast('Repayment recorded.');renderUser()}
+function renderAdmin(){
+ hideAll();document.getElementById('adminDash').classList.remove('hidden');const pending=state.loans.filter(l=>l.status==='Pending'),approved=state.loans.filter(l=>l.status==='Approved'),paid=state.payments.reduce((a,p)=>a+p.amount,0);
+ document.getElementById('adminDash').innerHTML=`<header class="dashbar"><div class="logo">Geek<span>Loan</span> ⚡ <small style="font-size:11px;color:#94a3b8">ADMIN</small></div><button class="btn btn-outline" onclick="logout()">Logout</button></header><main class="dashbody">
+ <div class="welcome"><div><h1>Admin Dashboard</h1><div class="muted">Loan operations overview</div></div><button class="btn btn-primary" onclick="exportData()">Export report</button></div>
+ <div class="admin-grid"><div class="card stat"><small>Borrowers</small><strong>${state.users.length}</strong></div><div class="card stat"><small>Pending</small><strong>${pending.length}</strong></div><div class="card stat"><small>Approved</small><strong>${approved.length}</strong></div><div class="card stat"><small>Portfolio</small><strong>${money(approved.reduce((a,l)=>a+l.balance,0))}</strong></div><div class="card stat"><small>Collected</small><strong>${money(paid)}</strong></div></div>
+ <div class="card" style="margin-top:18px"><h3>Loan applications</h3>${adminLoanTable()}</div>
+ <div class="grid2"><div class="card"><h3>Borrowers</h3>${state.users.length?`<div class="table-wrap"><table class="table"><tr><th>Name</th><th>ID</th><th>Phone</th><th>Loans</th></tr>${state.users.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.id)}</td><td>${esc(u.phone)}</td><td>${state.loans.filter(l=>l.userId===u.id).length}</td></tr>`).join('')}</table></div>`:'<p class="muted">No borrowers registered.</p>'}</div>
+ <div class="card"><h3>System controls</h3><p class="muted">This front-end demo stores data in the current browser using localStorage.</p><button class="btn btn-outline" onclick="resetDemo()">Reset demo data</button><div class="notice">For production: add a secure server, database, password hashing, role-based access control, audit logs, encryption, KYC/AML processes, privacy controls and a compliant payment provider.</div></div></div></main>`
+}
+function adminLoanTable(){if(!state.loans.length)return '<p class="muted">No applications yet.</p>';return `<div class="table-wrap"><table class="table"><tr><th>Ref</th><th>Borrower</th><th>Amount</th><th>Purpose</th><th>Status</th><th>Action</th></tr>${state.loans.slice().reverse().map(l=>{const u=state.users.find(x=>x.id===l.userId)||{};return `<tr><td>${l.ref}</td><td>${esc(u.name||l.userId)}</td><td>${money(l.amount)}</td><td>${esc(l.purpose||'—')}</td><td><span class="status ${l.status.toLowerCase()}">${l.status}</span></td><td>${l.status==='Pending'?`<button class="btn btn-primary" onclick="decision('${l.ref}','Approved')">Approve</button> <button class="btn" style="background:#fee2e2;color:#991b1b" onclick="decision('${l.ref}','Rejected')">Reject</button>`:`<button class="btn" onclick="viewLoan('${l.ref}')">View</button>`}</td></tr>`}).join('')}</table></div>`}
+function decision(ref,status){const l=state.loans.find(x=>x.ref===ref);l.status=status;if(status==='Approved')l.balance=l.amount;state.notices.push({userId:l.userId,text:`Your application ${ref} was ${status.toLowerCase()}.`,date:new Date().toISOString()});save();toast('Loan '+status.toLowerCase()+'.');renderAdmin()}
+function viewLoan(ref){const l=state.loans.find(x=>x.ref===ref);const u=state.users.find(x=>x.id===l.userId)||{};document.getElementById('modal').classList.remove('hidden');document.getElementById('modal').innerHTML=`<div class="modal-box"><div class="modal-head"><h2>${ref}</h2><button class="close" onclick="closeModal()">✕</button></div><p><b>Borrower:</b> ${esc(u.name)} (${esc(u.id)})</p><p><b>Phone:</b> ${esc(u.phone)}</p><p><b>Amount:</b> ${money(l.amount)}</p><p><b>Term:</b> ${l.months} months</p><p><b>Rate:</b> ${l.rate}% p.a.</p><p><b>Purpose:</b> ${esc(l.purpose||'—')}</p><p><b>Status:</b> ${l.status}</p><p><b>Balance:</b> ${money(l.balance)}</p></div>`}
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='geek-loan-report.json';a.click();URL.revokeObjectURL(a.href)}
+function resetDemo(){if(confirm('Reset all local demo data?')){localStorage.removeItem(KEY);location.reload()}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+if(state.session?.type==='admin')renderAdmin();else if(state.session?.type==='user'&&user())renderUser();else goHome();
+</script>
+</body>
+</html>
